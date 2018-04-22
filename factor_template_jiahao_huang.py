@@ -24,8 +24,8 @@ warnings.filterwarnings("ignore")
 
 start = 20130101
 end = 20180101
-factor_list  = ['BBI','RVI','Elder','EPS','PE','PS','CTOP','MA10RegressCoeff12','AR','BR','ARBR','np_parent_comp_ttm','total_share','bps',
-                'tot_cur_assets','tot_cur_liab','inventories','pre_pay','deferred_exp',
+factor_list  = ['BBI','RVI','Elder','EPS','PE','PS','CTOP','AR','BR','ARBR','np_parent_comp_ttm','total_share','bps',
+                'tot_cur_assets','tot_cur_liab','inventories',
                 'oper_rev','tot_assets','net_profit']
 check_factor = ','.join(factor_list)
 
@@ -65,16 +65,16 @@ def MTMMA(param=None):
     if not param:
         param = default_param
     
-    dv.add_formula('MTM','close - Delay(close, %s)'%(param['t1']),
+    dv.add_formula('MTM1','close - Delay(close, %s)'%(param['t1']),
                         is_quarterly=False, add_data=True)    
-    MTMMA = dv.add_formula('MTMMA','Ts_Mean(MTM, %s)'%(param['t2']),
+    MTMMA = dv.add_formula('MTMMA','Ts_Mean(MTM1, %s)'%(param['t2']),
                          is_quarterly=False)
     
     return MTMMA
 
 
 def quick_ratio():
-    quick_ratio = dv.add_formula('quick_ratio','(tot_cur_assets - inventories - pre_pay - deferred_exp)/tot_cur_liab',
+    quick_ratio = dv.add_formula('quick_ratio','(tot_cur_assets - inventories)/tot_cur_liab',
                                is_quarterly=True)
     
     return quick_ratio
