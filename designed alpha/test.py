@@ -75,7 +75,7 @@ def test(factor,data):
             raise TypeError('error index type')
         print ('{} OK!'.format(factor))
 
-from template import factor1,factor2,factor3,factor4,factor5,factor6,factor7,factor8,factor9,factor10
+from template import factor1,factor2,factor3,factor4,factor5,factor6,factor7,factor8,factor9,factor10,factor11
 
-for f in ['factor1','factor2','factor3','factor4','factor5','factor6','factor7','factor8','factor9','factor10']:
+for f in ['factor1','factor2','factor3','factor4','factor5','factor6','factor7','factor8','factor9','factor10','factor11']:
     test(f, globals()[f].run_formula(dv))
